@@ -1,0 +1,30 @@
+<aura:component controller="SkillVisualisation" implements="force:hasSObjectName,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:handler action="{!c.doInit}" name="init" value="{!this}" />
+    <aura:attribute name="tags" type="SkillVisualisation.Tags"/>    
+    <aura:attribute name="recordId" type="Id" />
+  	<aura:attribute name="sobjecttype" type="String" default="{!v.sObjectName}"/>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <aura:iteration items="{!v.tags.MTagLst}" var="Main_Tag">
+                <ul class="slds-accordion">
+                    <li class="slds-accordion__list-item">
+                        <section class="slds-accordion__section slds-is-open">
+                            <div class="slds-accordion__summary">
+                                <h3 class="slds-accordion__summary-heading">
+                                    <div aria-controls="accordion-details-01" aria-expanded="true" class="slds-button slds-button_reset slds-accordion__summary-action">
+                                        <span class="slds-truncate" title="Accordion summary">{!Main_Tag.Label}</span>
+                                    </div>
+                                </h3>
+                            </div>
+                            <div aria-hidden="false" class="slds-accordion__content" id="accordion-details-01">
+                                <aura:iteration items="{!Main_Tag.STagLst}" var="Sub_Tags">
+                                    <span class="slds-badge">{!Sub_Tags.Label}</span>
+                                </aura:iteration>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </aura:iteration>
+        </div>
+    </article>
+</aura:component>
